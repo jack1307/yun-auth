@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/huniu?useUnicode=true&characterEncoding=utf8&serverTimeZone=Asia/Shanghai&rewriteBathedStatements=true&allowMultiQueries=true
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 30000
+      auto-commit: true
+      minimum-idle: 5
+      maximum-pool-size: 5
+      connection-test-query: select 1 from dual
+      max-lifetime: 180000
+  cache:
+    cache-names: yun-auth
+    caffeine:
+      spec: initialCapacity=3000,maximunSize=1000,expireAfterWrite=3600s
+    type: caffeine
+mybatis-plus:
+  type-aliases-package: 
+  mapper-locations: 'classpath:mapper/**/*Mapper.xml'
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
